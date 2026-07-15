@@ -45,7 +45,7 @@ def recommend(movie):
             recommendations.append(
             movies.iloc[i[0]].title
             )
-            return jsonify(recommendations)
+        return jsonify(recommendations)
     except Exception as e:
         print("ERROR:", e)
         return {"error": str(e)}, 500
