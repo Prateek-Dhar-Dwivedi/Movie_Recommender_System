@@ -5,13 +5,13 @@ import "./Home.css";
 function Home() {
 
   const [movie, setMovie] = useState("");
-  const [recommendations, setRecommendations] = useState([]);
+  const [recommendations, setRecommendations] = useState(null);
 
   const handleRecommend = async () => {
 
-  const res = await axios.get(
-  `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
-);
+    const res = await axios.get(
+      `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
+    );
 
     setRecommendations(res.data);
   };
@@ -33,11 +33,15 @@ function Home() {
 
       <div className="movies">
 
-        {recommendations.map((item,index)=>(
-          <div className="card" key={index}>
-            <h3>{item}</h3>
-          </div>
-        ))}
+        {recommendations === null ? null : recommendations.length === 0 ? (
+          <h3>No movies available</h3>
+        ) : (
+          recommendations.map((item, index) => (
+            <div className="card" key={index}>
+              <h3>{item}</h3>
+            </div>
+          ))
+        )}
 
       </div>
 
