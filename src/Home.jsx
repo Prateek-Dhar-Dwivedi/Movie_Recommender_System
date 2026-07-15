@@ -8,19 +8,28 @@ function Home() {
   const [recommendations, setRecommendations] = useState([]);
 
   const handleRecommend = async () => {
-
+  try {
     const res = await axios.get(
       `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
     );
 
+    console.log(res.data);
+
     if (res.data.error) {
-    alert("No movies available");
-    setRecommendations([]);
-    return;
-}
+      alert("No movies available");
+      setRecommendations([]);
+      return;
+    }
 
     setRecommendations(res.data);
-  };
+
+  } catch (error) {
+    console.log(error.response?.data);
+
+    alert("No movies available");
+    setRecommendations([]);
+  }
+};
 
   return (
     <div className="container">
