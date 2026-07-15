@@ -13,7 +13,9 @@ import pickle
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, origins=[
+    "https://movie-recommender-system-vert.vercel.app"
+])
 
 @app.route("/")
 def home():
@@ -25,9 +27,14 @@ similarity = pickle.load(open("similarity.pkl","rb"))
 @app.route("/recommend/<movie>")
 def recommend(movie):
 
-    movie_index = movies[
-        movies["title"] == movie
-    ].index[0]
+    matched_movies = movies[movies['title'] == movie]
+
+    if matched_movies.empty:
+        return jsonify({
+        "error": "Movie not found"
+    }), 404
+
+    movie_index = matched_movies.index[0]
 
     distances = similarity[movie_index]
 
