@@ -13,9 +13,7 @@ import pickle
 
 app = Flask(__name__)
 
-CORS(app, origins=[
-    "https://movie-recommender-system-vert.vercel.app"
-])
+CORS(app)
 
 @app.route("/")
 def home():
