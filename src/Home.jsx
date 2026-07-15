@@ -5,7 +5,7 @@ import "./Home.css";
 function Home() {
 
   const [movie, setMovie] = useState("");
-  const [recommendations, setRecommendations] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
 
   const handleRecommend = async () => {
 
