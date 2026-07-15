@@ -24,7 +24,7 @@ def home():
 movies = pickle.load(open("movies.pkl","rb"))
 similarity = pickle.load(open("similarity.pkl","rb"))
 
-@app.route("/recommend/<movie>")
+@app.route("/api/recommend/<movie>")
 def recommend(movie):
     try:
         matched_movies = movies[movies['title'] == movie]
