@@ -8,7 +8,12 @@ Original file is located at
 """
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 import pickle
+
+CORS(app, origins=[
+    "https://movie-recommender-system-vert.vercel.app"
+])
 
 app = Flask(__name__)
 
