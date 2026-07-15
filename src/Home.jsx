@@ -9,8 +9,8 @@ function Home() {
 
   const handleRecommend = async () => {
 
-    const res = await axios.get(
-      `https://movie-recommender-system-2-cvnf.onrender.com`
+  const res = await axios.get(
+      `https://movie-recommender-system-4-nn5m.onrender.com`
     );
 
     setRecommendations(res.data);
