@@ -26,32 +26,29 @@ similarity = pickle.load(open("similarity.pkl","rb"))
 
 @app.route("/recommend/<movie>")
 def recommend(movie):
-
-    matched_movies = movies[movies['title'] == movie]
-
-    if matched_movies.empty:
-        return jsonify({
-        "error": "Movie not found"
-    }), 404
-
-    movie_index = matched_movies.index[0]
-
-    distances = similarity[movie_index]
-
-    movie_list = sorted(
+    try:
+        matched_movies = movies[movies['title'] == movie]
+        if matched_movies.empty:
+            return jsonify({
+                "error": "Movie not found"
+            }), 404
+        movie_index = matched_movies.index[0]
+        distances = similarity[movie_index]
+        movie_list = sorted(
         list(enumerate(distances)),
         reverse=True,
-        key=lambda x:x[1]
-    )[1:11]
-
-    recommendations = []
-
-    for i in movie_list:
-        recommendations.append(
+        key=lambda x:x[1] )[1:11]
+        
+        recommendations = []
+        
+        for i in movie_list:
+            recommendations.append(
             movies.iloc[i[0]].title
-        )
-
-    return jsonify(recommendations)
+            )
+            return jsonify(recommendations)
+    except Exception as e:
+        print("ERROR:", e)
+        return {"error": str(e)}, 500
 
 if __name__ == "__main__":
     app.run()
