@@ -10,7 +10,7 @@ function Home() {
   const handleRecommend = async () => {
 
   const res = await axios.get(
-  `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${movie}`
+  `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
 );
 
     setRecommendations(res.data);
