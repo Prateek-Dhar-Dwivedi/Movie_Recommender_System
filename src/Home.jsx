@@ -13,9 +13,11 @@ function Home() {
       `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
     );
 
-    if (res.data.length === 0) {
-      alert("No movies available");
-    }
+    if (res.data.error) {
+    alert("No movies available");
+    setRecommendations([]);
+    return;
+}
 
     setRecommendations(res.data);
   };
