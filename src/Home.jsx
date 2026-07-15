@@ -10,8 +10,8 @@ function Home() {
   const handleRecommend = async () => {
 
   const res = await axios.get(
-      `https://movie-recommender-system-4-nn5m.onrender.com`
-    );
+  `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${movie}`
+);
 
     setRecommendations(res.data);
   };
