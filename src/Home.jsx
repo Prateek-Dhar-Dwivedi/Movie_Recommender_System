@@ -9,22 +9,11 @@ function Home() {
 
   const handleRecommend = async () => {
 
-    if (!movie.trim()) {
-      setRecommendations([]);
-      return;
-    }
+  const res = await axios.get(
+  `https://movie-recommender-system-4-nn5m.onrender.com/api/recommend/${encodeURIComponent(movie)}`
+);
 
-    try {
-      const res = await axios.get(
-        `https://movie-recommender-system-4-nn5m.onrender.com/recommend/${encodeURIComponent(movie)}`
-      );
-
-      setRecommendations(res.data);
-
-    } catch (error) {
-      console.log(error);
-      setRecommendations([]);
-    }
+    setRecommendations(res.data);
   };
 
   return (
@@ -44,15 +33,11 @@ function Home() {
 
       <div className="movies">
 
-        {recommendations.length > 0 ? (
-          recommendations.map((item, index) => (
-            <div className="card" key={index}>
-              <h3>{item}</h3>
-            </div>
-          ))
-        ) : searched ? (
-          <h3>No movies available</h3>
-        ) : null}
+        {recommendations.map((item,index)=>(
+          <div className="card" key={index}>
+            <h3>{item}</h3>
+          </div>
+        ))}
 
       </div>
 
