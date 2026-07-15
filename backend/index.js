@@ -22,7 +22,7 @@ app.get("/api/recommend/:movie", async (req, res) => {
         const movie = req.params.movie;
 
         const response = await axios.get(
-            `https://movie-recommender-system-2-cvnf.onrender.com/recommend/${movie}`
+            `https://movie-recommender-system-4-t5zw.onrender.com/recommend/${movie}`
         );
 
         res.json(response.data);
