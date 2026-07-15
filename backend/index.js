@@ -21,9 +21,9 @@ app.get("/api/recommend/:movie", async (req, res) => {
 
         const movie = req.params.movie;
 
-        const res = await axios.get(
-      `https://movie-recommender-system-4-t5zw.onrender.com/api/recommend/${movie}`
-    );
+        const response = await axios.get(
+  `https://movie-recommender-system-4-t5zw.onrender.com/api/recommend/${encodeURIComponent(movie)}`
+);
         res.json(response.data);
 
     } catch (error) {
@@ -39,7 +39,7 @@ app.get("/api/recommend/:movie", async (req, res) => {
 });
 
 
-const PORT = 5001 || 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
