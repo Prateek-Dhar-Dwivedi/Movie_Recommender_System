@@ -12,6 +12,12 @@ import pickle
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "Welcome to Movie Recommender System"
+
+
+
 movies = pickle.load(open("movies.pkl","rb"))
 similarity = pickle.load(open("similarity.pkl","rb"))
 
